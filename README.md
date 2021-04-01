@@ -1,4 +1,4 @@
 # DotFiles
 Linux DotFiles
 
-Qtile, XMonad, XMobar, Termite, DMenu, Picom
+Qtile, XMonad, XMobar, Termite, DMenu, Picom, Neofetch
