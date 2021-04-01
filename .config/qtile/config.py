@@ -197,7 +197,7 @@ screens = [
         ),
     ),
 
-    # Monitor 1
+    # Monitor 2
     Screen(
         top=bar.Bar(
             [
