@@ -1,5 +1,5 @@
 # DotFiles
-Linux DotFiles
+## Linux DotFiles
 
 * .xmonad
   * xmonad.hs ->             Current config file for xMonad WM
