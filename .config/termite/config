@@ -4,7 +4,7 @@ clickable_url = true
 scrollback_lines = 10000
 
 # Browser
-browser = firefox
+browser = brave
 
 # Font
 font = Source Code Pro 14
