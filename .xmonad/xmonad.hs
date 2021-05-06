@@ -10,10 +10,12 @@ import XMonad.Util.SpawnOnce
 import XMonad.Layout.Spacing
 import XMonad.Layout.Gaps
 import XMonad.Layout.Grid
+import XMonad.Layout.PerWorkspace
 
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
 
+import XMonad.Actions.SpawnOn
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -30,7 +32,7 @@ myTerminal      = "termite"
 ------------------------------------------------------------------------
 -- WORKSPACES
 
--- Define workspace amount and corresponding names
+-- Define workspaces
 myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 ------------------------------------------------------------------------
 -- WINDOWS
@@ -79,10 +81,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_Tab   ), windows W.focusDown)
 
     -- Move focus to the next window
-    , ((modm,               xK_j     ), windows W.focusDown)
+    , ((modm,               xK_k     ), windows W.focusDown)
 
     -- Move focus to the previous window
-    , ((modm,               xK_k     ), windows W.focusUp  )
+    , ((modm,               xK_j     ), windows W.focusUp  )
 
     -- Move focus to the master window
     , ((modm,               xK_m     ), windows W.focusMaster  )
@@ -91,15 +93,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_Return), windows W.swapMaster)
 
     -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
+    , ((modm .|. shiftMask, xK_k     ), windows W.swapDown  )
 
     -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
+    , ((modm .|. shiftMask, xK_j     ), windows W.swapUp    )
 
-    -- Shrink the master area
+    -- Shrink the master pane
     , ((modm,               xK_h     ), sendMessage Shrink)
 
-    -- Expand the master area
+    -- Expand the master pane
     , ((modm,               xK_l     ), sendMessage Expand)
 
     -- Push window back into tiling
@@ -167,7 +169,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 -- Reset with 'mod-shift-space' after 'mod-q' restart to apply
 
-myLayout = gaps [(L,20), (R,20), (U,20), (D,20)] $ spacingRaw True (Border 0 0 0 0) True (Border 20 20 20 20) True $ avoidStruts(tiled ||| Mirror tiled ||| Full ||| Grid)
+myLayout = gaps [(L,20), (R,20), (U,20), (D,20)] $ spacing 20 $ onWorkspace "2" (Mirror (Tall 0 delta ratio)) (tiled ||| Mirror tiled ||| Full ||| Grid)
   where
      -- Default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -195,7 +197,7 @@ myLayout = gaps [(L,20), (R,20), (U,20), (D,20)] $ spacingRaw True (Border 0 0 0
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook = composeAll
+myManageHook = manageSpawn <+> composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
@@ -203,8 +205,6 @@ myManageHook = composeAll
 ------------------------------------------------------------------------
 -- EVENT HANDLING
 
--- * EwmhDesktops users should change this to ewmhDesktopsEventHook
---
 -- Defines a custom handler function for X Events. The function should
 -- return (All True) if the default handler is to be run afterwards. To
 -- combine event hooks use mappend or mconcat from Data.Monoid.
@@ -221,9 +221,13 @@ myLogHook = dynamicLog
 
 -- Perform when xmonad is started / restarted
 
-myStartupHook = do
-      spawnOnce "nitrogen --restore &"
-      spawnOnce "picom &"
+myStartupHook = composeAll
+      [ spawnOnce "nitrogen --restore &"
+      , spawnOnce "picom &"
+      , spawnOn "1" "spotify"
+      , spawnOn "2" "termite"
+      , spawnOn "2" "termite"
+      , spawnOn "2" "termite" ]
 ------------------------------------------------------------------------
 -- SETTINGS
 
@@ -261,14 +265,14 @@ defaults = def {
 -- Commands and their corresponding actions
 
 help :: String
-help = unlines ["The default modifier key is 'alt'. Default keybindings:",
+help = unlines ["Mod key = 'Super'. Keybindings:",
     "",
     "-- launching and killing programs",
-    "mod-Shift-Enter  Launch xterminal",
+    "mod-Shift-Enter  Launch termite",
     "mod-p            Launch dmenu",
     "mod-Shift-p      Launch gmrun",
-    "mod-Shift-c      Close/kill the focused window",
-    "mod-Space        Rotate through the available layout algorithms",
+    "mod-c      Close/kill the focused window",
+    "mod-Space        Rotate through layouts",
     "mod-Shift-Space  Reset the layouts on the current workSpace to default",
     "mod-n            Resize/refresh viewed windows to the correct size",
     "",
