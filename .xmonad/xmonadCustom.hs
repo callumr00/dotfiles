@@ -13,6 +13,7 @@ import XMonad.Layout.Grid
 import XMonad.Layout.PerWorkspace
 
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.DynamicLog
 
 import XMonad.Actions.SpawnOn
@@ -129,8 +130,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
     ]
     ++
-
-    --
+    
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
     --
@@ -169,7 +169,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 -- Reset with 'mod-shift-space' after 'mod-q' restart to apply
 
-myLayout = gaps [(L,20), (R,20), (U,20), (D,20)] $ spacing 20 $ onWorkspace "2" (Mirror (Tall 0 delta ratio)) (tiled ||| Mirror tiled ||| Full ||| Grid)
+myLayout = gaps [(L,12), (R,12), (U,36), (D,12)] $ spacing 12 $ onWorkspace "2" (Mirror (Tall 0 delta ratio)) (tiled ||| Mirror tiled ||| Full ||| Grid)
   where
      -- Default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -199,7 +199,7 @@ myLayout = gaps [(L,20), (R,20), (U,20), (D,20)] $ spacing 20 $ onWorkspace "2" 
 --
 myManageHook = manageSpawn <+> composeAll
     [ className =? "MPlayer"        --> doFloat
-    , className =? "Gimp"           --> doFloat
+    , isDialog                      --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
 ------------------------------------------------------------------------
@@ -215,50 +215,57 @@ myEventHook = mempty
 
 -- Perform an arbitrary action on each internal state change or X event.
 
-myLogHook = dynamicLog
+myLogHook h = dynamicLogWithPP $ def
+    { ppCurrent = xmobarColor "#1bb817" "" . wrap "[" "]"
+    , ppHidden = xmobarColor "#5296f0" ""
+    , ppHiddenNoWindows = xmobarColor "#7f8080" ""
+    , ppTitle = xmobarColor "#ffffff" "" . shorten 60
+    , ppLayout = xmobarColor "#ffffff" ""
+    , ppUrgent = xmobarColor "#e3411c" ""
+    , ppSep = "<fc=#ffffff> | </fc>"
+    , ppOutput = hPutStrLn h 
+    } 
 ------------------------------------------------------------------------
 -- STARTUP HOOK
 
 -- Perform when xmonad is started / restarted
 
 myStartupHook = composeAll
-      [ spawnOnce "nitrogen --restore &"
+      [ spawnOnce "xmobar &"
+      , spawnOnce "nitrogen --restore &"
       , spawnOnce "picom &"
       , spawnOn "1" "spotify"
       , spawnOn "2" "termite"
-      , spawnOn "2" "termite"
-      , spawnOn "2" "termite" ]
+      , spawnOn "2" "termite -e ncdu"
+      , spawnOn "2" "termite -e htop" ]
 ------------------------------------------------------------------------
 -- SETTINGS
 
--- Run xmonad with the settings you specify
+-- Run xmonad with the settings specified
 main = do
-      xmProc <- spawnPipe "xmobar /home/callum/.config/xmobar/xmobarrc"
-      xmonad $ docks $ defaults
+      xmobarProc <- spawnPipe "xmobar /home/callum/.config/xmobar/xmobarrc"
+      xmonad $ docks $ def {
+        -- General; Terminal, Modkey, Workspaces and Windows
+          terminal           = myTerminal,
+          focusFollowsMouse  = myFocusFollowsMouse,
+          clickJustFocuses   = myClickJustFocuses,
+          borderWidth        = myBorderWidth,
+          modMask            = myModMask,
+          workspaces         = myWorkspaces,
+          normalBorderColor  = myNormalBorderColor,
+          focusedBorderColor = myFocusedBorderColor,
 
--- Config settings, overrides default config
-defaults = def {
-      -- General; Terminal, Modkey, Workspaces and Windows
-        terminal           = myTerminal,
-        focusFollowsMouse  = myFocusFollowsMouse,
-        clickJustFocuses   = myClickJustFocuses,
-        borderWidth        = myBorderWidth,
-        modMask            = myModMask,
-        workspaces         = myWorkspaces,
-        normalBorderColor  = myNormalBorderColor,
-        focusedBorderColor = myFocusedBorderColor,
+        -- Key and Mouse Bindings
+          keys               = myKeys,
+          mouseBindings      = myMouseBindings,
 
-      -- Key and Mouse Bindings
-        keys               = myKeys,
-        mouseBindings      = myMouseBindings,
-
-      -- Hooks and Layouts
-        layoutHook         = myLayout,
-        manageHook         = myManageHook,
-        handleEventHook    = myEventHook,
-        logHook            = myLogHook,
-        startupHook        = myStartupHook
-    }
+        -- Hooks and Layouts
+          layoutHook         = myLayout,
+          manageHook         = myManageHook,
+          handleEventHook    = myEventHook,
+          logHook            = myLogHook xmobarProc,
+          startupHook        = myStartupHook
+      }
 ------------------------------------------------------------------------
 -- HELP MENU
 
