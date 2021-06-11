@@ -1,38 +1,35 @@
-Config { font = "xft:Inter:weight=regular:pixelsize=14:antialias=true:hinting:trueM"
-       , additionalFonts = []
-       , borderColor = "black"
-       , border = TopB
-       , bgColor = "black"
-       , fgColor = "grey"
-       , alpha = 100
+Config { 
+       --Appearance
+       font = "xft:Inter:weight=regular:pixelsize=16:antialias=true:hinting:true"
+       , additionalFonts = ["xft:Mononoki Nerf Font:weight=regular:pixelsize=14:antialias=true:hinting:true"]
+       , bgColor = "#333333"
+       , fgColor = "#ffffff"
+       , alpha = 180
        , position = Top
-       , textOffset = -4
-       , iconOffset = -1
-       , lowerOnStart = True
+
+       -- Behaviour
+       , lowerOnStart = False
        , pickBroadest = False
-       , persistent = False
+       , persistent = True
        , hideOnStart = False
-       , iconRoot = "."
+       , iconRoot = "/home/callum/.xmonad/xpm/"
        , allDesktops = True
        , overrideRedirect = True
-       , commands = [ Run Weather "EGPF" ["-t","<station>: <tempC>C",
-                                          "-L","18","-H","25",
-                                          "--normal","green",
-                                          "--high","red",
-                                          "--low","lightblue"] 36000
-                    , Run Network "eth0" ["-L","0","-H","32",
-                                          "--normal","green","--high","red"] 10
-                    , Run Network "eth1" ["-L","0","-H","32",
-                                          "--normal","green","--high","red"] 10
-                    , Run Cpu ["-L","3","-H","50",
-                               "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+
+       --Plugins
+       , commands = [ Run Cpu ["-L","25","-H","75","--low","#21E31C","--normal","#E3A61C","--high","#E3411C"] 10
+                    , Run Memory ["-t", "Mem: <usedratio>%","-L","25","-H","75","--low","#21E31C","--normal","#E3A61C","--high","#E3411C"] 10
                     , Run Swap [] 10
+                    , Run Network "enp0s25" ["-t", "<rx>kb <tx>kb"] 20
                     , Run Com "uname" ["-s","-r"] "" 36000
+                    , Run Com "/home/callum/.local/bin/pacupdate" [] "pacupdate" 36000
+                    , Run Com "/home/callum/.local/bin/pacupdate2" [] "pacupdate2" 36000
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
                     , Run StdinReader
                     ]
+
+       -- Layout 
        , sepChar = "%"
        , alignSep = "}{"
-   , template = "%StdinReader% }{| <fc=#f296f0>%cpu%</fc> | <fc=#f1fa8c>%memory%</fc> | <fc=#57c7ff>%internet%</fc> | <fc=#bd93f9>%backlight% %volume%</fc> | <fc=#5af78e>%battery%</fc> | <fc=#57c7ff>%date%</fc> " 
+       , template = "<box mt=2 mb=2></box> <icon=HaskellLogo.xpm/> <box mt=2 mb=2></box> <fc=#E3411C>%StdinReader% </fc> } %date% { <action=`termite -e htop`>%cpu%</action> | <action=`termite -e htop`>%memory%</action> | Packages: <action=`termite -e 'sudo pacman -Syu'`>%pacupdate2%</action>, <action=`termite -e 'sudo pacman -Syu'`>%pacupdate%</action>| <action=`termite -e htop`>%uname%</action> <box mt=2 mb=2></box>" 
        }
