@@ -29,12 +29,12 @@ myModMask       = mod4Mask
 -- TERMINAL
 
 -- Define default terminal
-myTerminal      = "termite"
+myTerminal      = "alacritty"
 ------------------------------------------------------------------------
 -- WORKSPACES
 
 -- Define workspaces
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces    = [" 1 "," 2 "," 3 "," 4 "," 5 "," 6 "," 7 "," 8 "," 9 "]
 ------------------------------------------------------------------------
 -- WINDOWS
 
@@ -50,8 +50,8 @@ myClickJustFocuses = False
 myBorderWidth   = 3
 
 -- Border colors for unfocused and focused windows, respectively.
-myNormalBorderColor  = "#353535"
-myFocusedBorderColor = "#5296F0"
+myNormalBorderColor  = "#e0f2fc"
+myFocusedBorderColor = "#64b9d8"
 ------------------------------------------------------------------------
 --  KEYBINDS
 
@@ -169,7 +169,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 -- Reset with 'mod-shift-space' after 'mod-q' restart to apply
 
-myLayout = gaps [(L,12), (R,12), (U,36), (D,12)] $ spacing 12 $ onWorkspace "2" (Mirror (Tall 0 delta ratio)) (tiled ||| Mirror tiled ||| Full ||| Grid)
+myLayout = gaps [(L,12), (R,12), (U,36), (D,12)] $ spacing 12 $ onWorkspace " 2 " (Mirror (Tall 0 delta ratio)) (tiled ||| Mirror tiled ||| Full ||| Grid)
   where
      -- Default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -216,11 +216,11 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 
 myLogHook h = dynamicLogWithPP $ def
-    { ppCurrent = xmobarColor "#1bb817" "" . wrap "[" "]"
-    , ppHidden = xmobarColor "#5296f0" ""
-    , ppHiddenNoWindows = xmobarColor "#7f8080" ""
-    , ppTitle = xmobarColor "#ffffff" "" . shorten 60
-    , ppLayout = xmobarColor "#ffffff" ""
+    { ppCurrent = xmobarColor "#64b9d8" "" . wrap "[" "]"
+    , ppHidden = xmobarColor "#e0f2fc" ""
+    , ppHiddenNoWindows = xmobarColor "#20364d" ""
+    , ppTitle = xmobarColor "#e0f2fc" "" . shorten 60
+    , ppLayout = xmobarColor "#e0f2fc" ""
     , ppUrgent = xmobarColor "#e3411c" ""
     , ppSep = "<fc=#ffffff> | </fc>"
     , ppOutput = hPutStrLn h 
@@ -231,13 +231,17 @@ myLogHook h = dynamicLogWithPP $ def
 -- Perform when xmonad is started / restarted
 
 myStartupHook = composeAll
-      [ spawnOnce "xmobar &"
+      [ 
+        spawnOnce "xmobar &"
       , spawnOnce "nitrogen --restore &"
       , spawnOnce "picom &"
-      , spawnOn "1" "spotify"
-      , spawnOn "2" "termite"
-      , spawnOn "2" "termite -e ncdu"
-      , spawnOn "2" "termite -e htop" ]
+      , spawnOn " 1 " "spotify --no-zygote"
+      , spawnOn " 2 " "alacritty -e 'sudo pacman -Sy'"
+      , spawnOn " 2 " "alacritty -e htop"
+      , spawnOn " 2 " "alacritty -e ncdu" 
+      -- , spawnOn " 2 " "alacritty -e neofetch" 
+      , spawnOn " 2 " "vncviewer" 
+      , spawnOnce "alacritty -e wal -R" ]
 ------------------------------------------------------------------------
 -- SETTINGS
 
@@ -270,53 +274,3 @@ main = do
 -- HELP MENU
 
 -- Commands and their corresponding actions
-
-help :: String
-help = unlines ["Mod key = 'Super'. Keybindings:",
-    "",
-    "-- launching and killing programs",
-    "mod-Shift-Enter  Launch termite",
-    "mod-p            Launch dmenu",
-    "mod-Shift-p      Launch gmrun",
-    "mod-c      Close/kill the focused window",
-    "mod-Space        Rotate through layouts",
-    "mod-Shift-Space  Reset the layouts on the current workSpace to default",
-    "mod-n            Resize/refresh viewed windows to the correct size",
-    "",
-    "-- move focus up or down the window stack",
-    "mod-Tab        Move focus to the next window",
-    "mod-Shift-Tab  Move focus to the previous window",
-    "mod-j          Move focus to the next window",
-    "mod-k          Move focus to the previous window",
-    "mod-m          Move focus to the master window",
-    "",
-    "-- modifying the window order",
-    "mod-Return   Swap the focused window and the master window",
-    "mod-Shift-j  Swap the focused window with the next window",
-    "mod-Shift-k  Swap the focused window with the previous window",
-    "",
-    "-- resizing the master/slave ratio",
-    "mod-h  Shrink the master area",
-    "mod-l  Expand the master area",
-    "",
-    "-- floating layer support",
-    "mod-t  Push window back into tiling; unfloat and re-tile it",
-    "",
-    "-- increase or decrease number of windows in the master area",
-    "mod-comma  (mod-,)   Increment the number of windows in the master area",
-    "mod-period (mod-.)   Deincrement the number of windows in the master area",
-    "",
-    "-- quit, or restart",
-    "mod-Shift-q  Quit xmonad",
-    "mod-q        Restart xmonad",
-    "mod-[1..9]   Switch to workSpace N",
-    "",
-    "-- Workspaces & screens",
-    "mod-Shift-[1..9]   Move client to workspace N",
-    "mod-{w,e,r}        Switch to physical/Xinerama screens 1, 2, or 3",
-    "mod-Shift-{w,e,r}  Move client to screen 1, 2, or 3",
-    "",
-    "-- Mouse bindings: default actions bound to mouse events",
-    "mod-button1  Set the window to floating mode and move by dragging",
-    "mod-button2  Raise the window to the top of the stack",
-    "mod-button3  Set the window to floating mode and resize by dragging"]
