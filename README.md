@@ -46,7 +46,7 @@ Wallpaper
 ![Screenshot with wallpaper](https://github.com/cally2k/dotfiles/blob/main/img/wallpaper.jpg)
 
 Firefox, Neofetch and Colour scheme
-![Screenshot with Neofetch and Colour scheme](https://github.com/cally2k/dotfiles/blob/main/img/screenshot%232.png)
+![Screenshot with Neofetch and Colour scheme](https://github.com/cally2k/dotfiles/blob/main/img/screenshot%231.png)
 
 Thunar, Code and Htop
-![Screenshot with Thunar, Code and Htop](https://github.com/cally2k/dotfiles/blob/main/img/screenshot%231.png)
+![Screenshot with Thunar, Code and Htop](https://github.com/cally2k/dotfiles/blob/main/img/screenshot%232.png)
