@@ -1,0 +1,29 @@
+window:
+  padding:
+    x: 10
+    y: 10
+  opacity: 0.8
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+font:
+  normal:
+    family: RobotoMono Nerd Font
+    style: Regular
+  bold:
+    family: Consolas
+    style: Bold
+  italic:
+    family: Consolas
+    style: Italic
+  bold_italic:
+    family: Consolas
+    style: Bold Italic
+  size: 11.0
+
+cursor:
+  style:
+    shape: Block
+    blinking: On

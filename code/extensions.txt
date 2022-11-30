@@ -1,0 +1,11 @@
+esbenp.prettier-vscode
+GitHub.vscode-pull-request-github
+glenn2223.live-sass
+haskell.haskell
+johnpapa.winteriscoming
+josee9988.minifyall
+justusadam.language-haskell
+PKief.material-icon-theme
+pranaygp.vscode-css-peek
+ritwickdey.LiveServer
+syler.sass-indented

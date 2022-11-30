@@ -1,0 +1,7 @@
+{
+    "workbench.colorTheme": "Winter is Coming (Dark Black)",
+    "workbench.iconTheme": "material-icon-theme",
+    "files.autoSave": "afterDelay",
+    "editor.wordWrap": "on",
+    "explorer.confirmDragAndDrop": false
+}
