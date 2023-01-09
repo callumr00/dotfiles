@@ -167,7 +167,7 @@ myStartupHook = do
   spawnOn " 2 " "alacritty -e 'sudo pacman -Sy'"
   spawnOn " 2 " "alacritty -e htop"
   spawnOn " 2 " "alacritty -e ncdu"
-  spawnOn " 2 " "alacritty -e watch -x sensors"
+  spawnOn " 2 " "psensor"
 
 main = do
       xmobarProc <- spawnPipe "xmobar /home/callum/.config/xmobar/xmobarrc"
