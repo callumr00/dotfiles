@@ -7,9 +7,9 @@ Status Bar      → [xmobar](https://github.com/jaor/xmobar)\
 Terminal        → [alacritty](https://github.com/alacritty/alacritty)\
 Menu            → [dmenu](https://tools.suckless.org/dmenu/) (with [highlight](https://tools.suckless.org/dmenu/patches/highlight/), [line height](https://tools.suckless.org/dmenu/patches/line-height/), and [numbers](https://tools.suckless.org/dmenu/patches/numbers/) patches)\
 File Manager    → [thunar](https://wiki.archlinux.org/title/thunar)\
-GTK3            → [WhiteSur GTK Theme](https://www.gnome-look.org/p/1403328/), [WhiteSur icon theme](https://www.gnome-look.org/p/1405756/) & [McMojave cursors](https://www.pling.com/p/1355701)\
+GTK3            → [WhiteSur GTK Theme](https://www.gnome-look.org/p/1403328/), [WhiteSur icon theme](https://www.gnome-look.org/p/1405756/) and [McMojave cursors](https://www.pling.com/p/1355701)\
 Compositor      → [picom](https://github.com/jonaburg/picom)\
-Browser         → [brave](https://brave.com/)\
+Browser         → [brave](https://brave.com/) (with [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) and [Cookie AutoDelete](https://chrome.google.com/webstore/detail/cookie-autodelete/fhcgjolkccmbidfldomjliifgaodjagh) addons)\
 Editor          → [vscode](https://code.visualstudio.com/)\
 Wallpaper       → [pnghut](https://pnghut.com/png/g8HeRPsQms/mount-scenery-mountain-range-21-9-aspect-ratio-desktop-wallpaper-transparent-png)
 
