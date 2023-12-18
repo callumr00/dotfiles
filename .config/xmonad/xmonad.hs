@@ -138,11 +138,9 @@ myLayoutHook =
     ,(D, 12) -- Down (Bottom) padding
   ]
   $ spacing 12 -- Window padding
-  $ onWorkspace " 2 " (Mirror (Tall 0 delta ratio)) -- Set workspace 2 layout
   $ tiled ||| Mirror tiled ||| Full ||| Grid -- Set layout options
   where
     tiled = Tall nmaster delta ratio -- Set tiled layout settings
-
     nmaster = 1      -- Default number of windows in the master pane
     delta   = 5/100  -- Percent of screen to increment by when resizing panes
     ratio   = 1/2    -- Default proportion of screen occupied by master pane
@@ -158,19 +156,8 @@ myLogHook h = dynamicLogWithPP $ def
     , ppOutput = hPutStrLn h 
     } 
 
--- Perform when xmonad is started / restarted
-myStartupHook :: X ()
-myStartupHook = do
-  spawnOnce "xmobar &"
-  spawnOnce "alacritty -e wal -R" 
-  spawnOn " 1 " "spotify"
-  spawnOn " 2 " "alacritty -e 'sudo pacman -Sy'"
-  spawnOn " 2 " "alacritty -e htop"
-  spawnOn " 2 " "alacritty -e ncdu"
-  spawnOn " 2 " "psensor"
-
 main = do
-      xmobarProc <- spawnPipe "xmobar /home/callum/.config/xmobar/xmobarrc"
+      xmobarProc <- spawnPipe "xmobar ~/.config/xmobar/xmobarrc"
       xmonad $ docks $ def {
           terminal           = myTerminal,
           focusFollowsMouse  = myFocusFollowsMouse,
@@ -184,6 +171,5 @@ main = do
           mouseBindings      = myMouseBindings,
           layoutHook         = myLayoutHook,
           manageHook         = myManageHook,
-          logHook            = myLogHook xmobarProc,
-          startupHook        = myStartupHook
+          logHook            = myLogHook xmobarProc
       }
