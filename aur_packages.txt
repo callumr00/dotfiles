@@ -1,0 +1,7 @@
+arduino-ide-bin
+ledger-live-bin
+nomacs
+nvitop
+spotify
+ventoy-bin
+yay

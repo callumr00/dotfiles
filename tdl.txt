@@ -1,0 +1,5 @@
+- Firefox config
+	- Security: https://github.com/arkenfox/user.js
+	- Styling : https://github.com/ttntm/minimal-one-line-firefox
+	- Addons  : ublock origin, proton pass, skip redirects, unhook
+- README.md

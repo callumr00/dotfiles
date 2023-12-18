@@ -2,18 +2,18 @@
 Config { 
        -- Appearance
        font = "xft:Inter:weight=regular:pixelsize=16:antialias=true:hinting:true"
-       , additionalFonts = ["xft:Mononoki Nerf Font:weight=regular:pixelsize=14:antialias=true:hinting:true"]
+       , additionalFonts = ["xft:Mononoki Nerf Font:weight=regular:pixelsize=16:antialias=true:hinting:true"]
        , bgColor = "#333333"
        , fgColor = "#ffffff"
        , alpha = 180
-       , position = Top
+       , position = TopH 24
+
 
        -- Behaviour
        , lowerOnStart = False
        , pickBroadest = False
        , persistent = True
        , hideOnStart = False
-       , iconRoot = "/home/callum/.xmonad/"
        , allDesktops = True
        , overrideRedirect = True
 
@@ -21,10 +21,9 @@ Config {
        , commands = [ Run Cpu ["-L","30","-H","80","--low","#21E31C","--normal","#E3A61C","--high","#E3411C"] 10
                     , Run Memory ["-t", "Mem: <usedratio>%","-L","30","-H","80","--low","#21E31C","--normal","#E3A61C","--high","#E3411C"] 10
                     , Run Swap [] 10
-                    , Run Network "enp0s25" ["-t", "<rx>kb <tx>kb"] 20
+		    , Run Network "enp0s25" ["-t", "<rx>kb <tx>kb"] 10
                     , Run Com "uname" ["-s","-r"] "" 36000
-                    , Run Com "/home/callum/.local/bin/packagecheck" [] "packagecheck" 6000
-                    , Run Com "/home/callum/.local/bin/pacupdate" [] "pacupdate" 6000
+                    , Run Com "sh" ["-c", "echo $(checkupdates | wc -l) / $(pacman -Qq | wc -l) Updates Available"] "checkupdates" 36000
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
                     , Run StdinReader
                     ]
@@ -32,5 +31,5 @@ Config {
        -- Layout 
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "<box mt=2 mb=2></box> <icon=logo.xpm/> <box mt=2 mb=2></box> <fc=#E3411C>%StdinReader% </fc> } %date% { <action=`alacritty -e htop`>%cpu%</action> | <action=`alacritty -e htop`>%memory%</action> | <action=`alacritty -e 'sudo pacman -Syu'`>%packagecheck%</action> | <action=`alacritty -e htop`>%uname%</action> <box mt=2 mb=2></box>" 
+       , template = "<box mt=2 mb=2></box> <icon=logo.xpm/> <box mt=2 mb=2></box> <fc=#E3411C>%StdinReader% </fc> } %date% { <action=`alacritty -e htop`>%cpu%</action> | <action=`alacritty -e htop`>%memory%</action> | <action=`alacritty -e 'sudo pacman -Syu'`>%checkupdates%</action> | <action=`alacritty -e htop`>%uname%</action> <box mt=2 mb=2></box>" 
        }
