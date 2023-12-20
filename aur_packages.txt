@@ -1,7 +1,8 @@
 arduino-ide-bin
+cbonsai
 ledger-live-bin
 nomacs
 nvitop
-spotify
+spotify-tui
 ventoy-bin
 yay

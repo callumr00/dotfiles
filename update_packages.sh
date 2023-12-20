@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Save pacman package list.
-pacman -Qqen > pacman_packages.txt
+pacman -Qqen > ~/.dotfiles/pacman_packages.txt
 
 # Save aur package list.
-pacman -Qqem > aur_packages.txt
+pacman -Qqem > ~/.dotfiles/aur_packages.txt
