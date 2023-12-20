@@ -1,3 +1,0 @@
-- cull package lists
-- update install script
-- update readme
