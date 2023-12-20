@@ -19,6 +19,8 @@ Browser → [firefox](https://www.mozilla.org/en-GB/firefox/)\
 Profile → [arkenfox](https://github.com/arkenfox/user.js)\
 Addons → [uBlock Origin](https://addons.mozilla.org/en-GB/firefox/addon/ublock-origin/), [Skip Redirect](https://addons.mozilla.org/en-GB/firefox/addon/skip-redirect/), [Proton Pass](https://addons.mozilla.org/en-GB/firefox/addon/proton-pass/)
 
+---
+
 <details>
 <summary>OS Installation (~15min)</summary>
 <br>
