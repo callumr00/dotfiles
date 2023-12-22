@@ -1,4 +1,4 @@
-# dotfiles
+# dotfiles:q
 
 A minimal installation and configuration for productivity.
 
@@ -69,7 +69,7 @@ Next, use the [archinstall](https://wiki.archlinux.org/title/archinstall) helper
 <br>
 
 1. Install git: `sudo pacman -S git`
-2. Clone this repo: `git clone https://github.com/callumr00/dotfiles.git ~/.dotfiles`
+2. Clone this repo: `git clone https://github.com/callumr00/dotfiles.git --branch minimal ~/.dotfiles`
 3. Run the install script: `~/.dotfiles/install.sh`
 4. Reboot: `reboot`
 
