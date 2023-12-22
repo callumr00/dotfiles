@@ -6,6 +6,7 @@ A minimal installation and configuration for productivity.
 ![screenshot](/img/screenshot.png)
 
 Window Manager → [xmonad](https://xmonad.org/)\
+Status Bar → [xmobar](https://hackage.haskell.org/package/xmobar)\
 Menu → [dmenu](https://tools.suckless.org/dmenu/)\
 Terminal Emulator → [alacritty](https://github.com/alacritty/alacritty)\
 Terminal Prompt → [starship](https://starship.rs/) (with [Pure](https://starship.rs/presets/pure-preset.html) preset)\
