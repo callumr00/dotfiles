@@ -1,0 +1,38 @@
+Config { 
+    bgColor = "#262626",
+    fgColor = "#ABB2BF",
+    position = TopH 36,
+    commands = [
+        Run StdinReader,
+        Run Date "%H:%M" "date" 600,
+        Run Cpu [
+            "-L",
+            "30",
+            "-H",
+            "80",
+            "--low",
+            "#98C379",
+            "--normal",
+            "#D19A66",
+            "--high",
+            "#E06C75"
+            ] 10,
+        Run Memory [
+            "-t",
+            "Mem: <usedratio>%",
+            "-L",
+            "30",
+            "-H",
+            "80",
+            "--low",
+            "#98C379",
+            "--normal",
+            "#D19A66",
+            "--high",
+            "#E06C75"
+            ] 10
+        ],
+    sepChar = "%",
+    alignSep = "}{",
+    template = "   %StdinReader%} %date% {%cpu%          %memory%   " 
+    }

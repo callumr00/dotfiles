@@ -51,6 +51,7 @@ configs=(
 	".config/alacritty"
 	".config/neofetch"
     ".config/nitrogen"
+    ".config/xmobar"
 	".config/xmonad"
 	".mozilla/firefox/$FIREFOX_PROFILE/user-overrides.js"
     ".vim"

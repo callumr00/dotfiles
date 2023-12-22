@@ -1,8 +1,11 @@
 import XMonad
 import XMonad.Layout
 import XMonad.ManageHook
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.Gaps
 import XMonad.Layout.Grid
+import XMonad.Util.Run
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 import System.Exit
@@ -30,8 +33,29 @@ manageHook = composeAll [
     isDialog --> doFloat -- Dialog windows are floating by default.
     ]
 
+-- Perform an arbitrary action on each internal state change of X event.
+logHook xmobarProc = dynamicLogWithPP $ def {
+    ppCurrent = xmobarColor "#56B6C2" "" . fullCircle, -- Active workspace.
+    ppHidden  = fullCircle, -- Non-empty but not active workspace.
+    ppHiddenNoWindows = emptyCircle, -- Empty and not active workspace.    
+    ppTitle = const "", -- Don't show the active window title.    
+    ppSep = "          ", -- Element Separator.
+    ppWsSep = "   ", -- Workspace separator.
+    ppOutput = hPutStrLn xmobarProc
+    }
+    where 
+        fullCircle :: WorkspaceId -> String
+        fullCircle _ = "◉"
+
+        emptyCircle :: WorkspaceId -> String
+        emptyCircle _ = "◌"
+
 -- Specify and transform layouts.
-layoutHook = tiled ||| Mirror tiled ||| Full ||| Grid -- Tiling options.
+layoutHook = 
+    gaps [
+    (U, 36) -- Leave a 24px space at the top (Up) for xmobar.
+    ]
+    $ tiled ||| Mirror tiled ||| Full ||| Grid -- Tiling options.
     where
         tiled   = Tall nmaster delta ratio
         nmaster = 1     -- Default number of windows in the master pane.
@@ -130,20 +154,23 @@ mouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList [
 
 -- Apply changes.
 main :: IO ()
-main = xmonad $ def {
-    XMonad.workspaces         = Main.workspaces,
-    XMonad.modMask            = Main.defaultModMask,
-    XMonad.borderWidth        = Main.borderWidth,
-    XMonad.normalBorderColor  = Main.normalBorderColor,
-    XMonad.focusedBorderColor = Main.focusedBorderColor,
-    XMonad.manageHook         = Main.manageHook,
-    XMonad.layoutHook         = Main.layoutHook,
-    XMonad.terminal           = Main.terminal,
-    XMonad.focusFollowsMouse  = Main.focusFollowsMouse,
-    XMonad.clickJustFocuses   = Main.clickJustFocuses,
-    XMonad.keys               = Main.keys,
-    XMonad.mouseBindings      = Main.mouseBindings
-}
+main = do
+    xmobarProc <- spawnPipe "xmobar ~/.config/xmobar/xmobarrc"
+    xmonad $ def {
+        XMonad.workspaces         = Main.workspaces,
+        XMonad.modMask            = Main.defaultModMask,
+        XMonad.borderWidth        = Main.borderWidth,
+        XMonad.normalBorderColor  = Main.normalBorderColor,
+        XMonad.focusedBorderColor = Main.focusedBorderColor,
+        XMonad.manageHook         = Main.manageHook,
+        XMonad.logHook            = Main.logHook xmobarProc,
+        XMonad.layoutHook         = Main.layoutHook,
+        XMonad.terminal           = Main.terminal,
+        XMonad.focusFollowsMouse  = Main.focusFollowsMouse,
+        XMonad.clickJustFocuses   = Main.clickJustFocuses,
+        XMonad.keys               = Main.keys,
+        XMonad.mouseBindings      = Main.mouseBindings
+    }
 
 -- Help message with keyboard and mouse bindings.
 help :: String
