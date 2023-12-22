@@ -9,7 +9,7 @@ Window Manager → [xmonad](https://xmonad.org/)\
 Status Bar → [xmobar](https://hackage.haskell.org/package/xmobar)\
 Menu → [dmenu](https://tools.suckless.org/dmenu/)\
 Terminal Emulator → [alacritty](https://github.com/alacritty/alacritty)\
-Terminal Prompt → [starship](https://starship.rs/) (with [Pure](https://starship.rs/presets/pure-preset.html) preset)\
+Terminal Prompt → [starship](https://starship.rs/) (with the [Pure](https://starship.rs/presets/pure-preset.html) preset)\
 Text Editor → [vim](https://www.vim.org/)
     
 GTK Theme → [WhiteSur GTK Theme](https://github.com/vinceliuice/WhiteSur-gtk-theme)\
