@@ -12,7 +12,6 @@ btop
 cuda
 cudnn
 darktable
-dmenu
 efibootmgr
 filezilla
 firefox
@@ -86,11 +85,15 @@ xclip
 xdg-utils
 xdotool
 xf86-video-nouveau
+xmobar
 xmonad
 xmonad-contrib
 xorg-server
 xorg-xinit
+xorg-xmessage
 yubikey-manager
 yubikey-manager-qt
+zathura
+zathura-pdf-poppler
 zip
 zram-generator
