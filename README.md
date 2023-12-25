@@ -1,4 +1,4 @@
-# dotfiles:q
+# dotfiles
 
 A minimal installation and configuration for productivity.
 
