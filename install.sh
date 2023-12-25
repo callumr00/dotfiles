@@ -10,6 +10,9 @@ cd yay
 makepkg -si
 yay -Syu --needed $(comm -12  <(yay -Slq | sort) <(sort ~/.dotfiles/aur_packages.txt))
 
+# Install npm packages.
+sudo npm install -g $(tr '\n' ' ' < ~/.dotfiles/npm_packages.txt)
+
 # Install themes.
 mkdir -p ~/.themes
 cd ~/.themes
@@ -48,6 +51,7 @@ git clone https://github.com/joshdick/onedark.vim.git
 # Create symbolic links to config files.
 configs=(
 	".bashrc"
+    "dmenu/config.h"
 	".config/alacritty"
 	".config/neofetch"
     ".config/nitrogen"
@@ -61,6 +65,14 @@ configs=(
 for config in "${configs[@]}"; do
        ln -fsv "${HOME}/.dotfiles/${config}" "${HOME}/${config}"
 done
+
+# Install dmenu.
+cd
+git clone https://git.suckless.org/dmenu
+cd dmenu
+wget https://tools.suckless.org/dmenu/patches/line-height/dmenu-lineheight-5.2.diff
+patch -p1 < dmenu-lineheight-5.2.diff
+sudo make clean install
 
 # Use starship's Pure preset config.
 starship preset pure-preset -o ~/.config/starship.toml
