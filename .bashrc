@@ -17,6 +17,14 @@ export HISTSIZE=1000
 # Call neofetch with custom ASCII image.
 alias status="neofetch --ascii ~/.config/neofetch/logos"
 
+# Print Oura Daily Scores in terminal.
+export OURA_DIR=~/oura-daily-scores/
+alias oura="(
+    python ${OURA_DIR}oura.py &&
+    jp2a ${OURA_DIR}daily_scores.png &&
+    rm ${OURA_DIR}daily_scores.png
+)"
+
 # Sync files with storage medium used for backups.
 alias backup="sudo rsync -av --delete /home /mnt/backup"
 
