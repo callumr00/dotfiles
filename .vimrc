@@ -1,4 +1,5 @@
 colorscheme onedark  " Use onedark colour scheme.
+set breakindent      " Keep indent when word wrapping.
 set expandtab        " Insert spaces instead of tabs.
 set number           " Display line numbers.
 set shiftwidth=4     " Set the number of spaces at each indentation level. 
