@@ -2,7 +2,7 @@
 
 A minimal installation and configuration for productivity.
 
-![screenshot](/screenshot.png)
+![screenshot](/screenshot.jpg)
 
 Window Manager → [xmonad](https://xmonad.org/)\
 Status Bar → [xmobar](https://hackage.haskell.org/package/xmobar)\
