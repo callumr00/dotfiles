@@ -2,14 +2,14 @@
 
 A minimal installation and configuration for productivity.
 
-![screenshot](/screenshot.png)
+![screenshot](/screenshot.jpg)
 
-Window Manager → [xmonad](https://xmonad.org/)\
-Status Bar → [xmobar](https://hackage.haskell.org/package/xmobar)\
-App Launcher → [rofi](https://davatorium.github.io/rofi/)\
-Terminal Emulator → [alacritty](https://github.com/alacritty/alacritty)\
-Terminal Prompt → [starship](https://starship.rs/) (with the [Pure](https://starship.rs/presets/pure-preset.html) preset)\
-Text Editor → [vim](https://www.vim.org/)
+Window Manager: [xmonad](https://xmonad.org/)\
+Status Bar: [xmobar](https://hackage.haskell.org/package/xmobar)\
+App Launcher: [rofi](https://davatorium.github.io/rofi/)\
+Terminal Emulator: [alacritty](https://github.com/alacritty/alacritty)\
+Terminal Prompt: [starship](https://starship.rs/) (with the [Pure](https://starship.rs/presets/pure-preset.html) preset)\
+Text Editor: [vim](https://www.vim.org/)
 
 ---
 
