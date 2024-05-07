@@ -17,17 +17,16 @@ Text Editor: [vim](https://www.vim.org/)
 <summary>OS Installation (~15min)</summary>
 <br>
 
-Go through the Pre-Installation steps:
-1. [Acquire an installation image](https://wiki.archlinux.org/title/installation_guide#Pre-installation)
-2. [Verify signature](https://wiki.archlinux.org/title/installation_guide#Prepare_an_installation_medium)
-3. [Prepare an installation medium](https://wiki.archlinux.org/title/installation_guide#Prepare_an_installation_medium)
-4. [Boot the live environment](https://wiki.archlinux.org/title/installation_guide#Prepare_an_installation_medium)
-
-Use the [archinstall](https://wiki.archlinux.org/title/archinstall) helper:
-
-5. ```archinstall``` when prompted
-6. Configure the installation:
-
+1. Go through the Pre-Installation steps
+    1. [Acquire an installation image](https://wiki.archlinux.org/title/installation_guide#Acquire_an_installation_image)
+    2. [Verify signature](https://wiki.archlinux.org/title/installation_guide#Verify_signature)
+    3. [Prepare an installation medium](https://wiki.archlinux.org/title/installation_guide#Prepare_an_installation_medium)
+    4. [Boot the live environment](https://wiki.archlinux.org/title/installation_guide#Boot_the_live_environment)
+  
+  
+2. Use the [archinstall](https://wiki.archlinux.org/title/archinstall) helper
+    1. `archinstall`
+    2. 
 | Field                     | Selection                                                     |
 |---------------------------|---------------------------------------------------------------|
 | Archinstall Language      | English (100%)                                                |
@@ -39,10 +38,10 @@ Use the [archinstall](https://wiki.archlinux.org/title/archinstall) helper:
 | Disk encryption           | *Encryption password*                                         |
 | Bootloader                | Grub                                                          |
 | Swap                      | True                                                          |
-| Host name                 | *host name*                                                   |
-| Root password             | *root password*                                               |
-| User account              | *user account*                                                |
-| Profile                   | Minimal                                                       |
+| Host name                 | *Host name*                                                   |
+| Root password             | *Root password*                                               |
+| User account              | *User account*                                                |
+| Profile/Type              | Minimal                                                       |
 | Audio                     | Pipewire                                                      |
 | Kernels                   | linux                                                         |
 | Additional Packages       | git                                                           |
@@ -50,9 +49,10 @@ Use the [archinstall](https://wiki.archlinux.org/title/archinstall) helper:
 | Timezone                  | Europe/London                                                 |
 | Automatic time sync (NTP) | True                                                          |
 | Optional Repositories     | multilib                                                      |
+    
+3. `reboot` 
+4. Enter the BIOS, boot the chosen harddrive, and login.
 
-7. `reboot` when finished.
-8. Enter the BIOS and boot the chosen harddrive, then login.
 </details>
 
 <details>
@@ -67,6 +67,6 @@ git clone https://github.com/callumr00/dotfiles.git ~/.dotfiles
 ```
 ~/.dotfiles/install.sh
 ```
-3. `reboot` and login 
-4. Enter the desktop environment with `startx`
+3. `reboot`
+4. Login and enter the desktop environment with `startx`
 </details>
