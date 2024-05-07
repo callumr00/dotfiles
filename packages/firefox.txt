@@ -1,0 +1,3 @@
+Kagi Search for Firefox
+Proton Pass
+uBlock Origin
