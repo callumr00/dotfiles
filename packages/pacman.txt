@@ -32,7 +32,6 @@ tldr
 tmux
 ttf-roboto-mono-nerd
 vim
-virtualbox
 xmobar
 xmonad
 xmonad-contrib
