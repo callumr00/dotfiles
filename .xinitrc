@@ -1,7 +1,4 @@
 #!/bin/sh
 
-# Set wallpaper.
-nitrogen --restore
-
-# Initialize xmonad window manager.
+xsetroot -solid "#292C34"
 xmonad

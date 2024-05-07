@@ -1,8 +1,0 @@
-arduino-ide-bin
-cbonsai
-ledger-live-bin
-nomacs
-nvitop
-spotify-tui
-ventoy-bin
-yay

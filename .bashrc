@@ -7,26 +7,13 @@
 
 #################################################
 
-# Initalize starship prompt.
-eval "$(starship init bash)"
-
-# Modify history settings to ignore duplicates and store 1000 lines.
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000
 
-# Call neofetch with custom ASCII image.
-alias status="neofetch --ascii ~/.config/neofetch/logos"
+eval "$(starship init bash)"
 
-# Print Oura Daily Scores in terminal.
-export OURA_DIR=~/oura-daily-scores/
-alias oura="(
-    python ${OURA_DIR}oura.py &&
-    jp2a ${OURA_DIR}daily_scores.png &&
-    rm ${OURA_DIR}daily_scores.png
-)"
-
-# Sync files with storage medium used for backups.
-alias backup="sudo rsync -av --delete /home /mnt/backup"
+# Send neofetch output to column for printing.
+alias neofetch="neofetch --stdout | column -t -s ':'"
 
 # Serve website at localhost that updates on file changes.
 alias serve='browser-sync start --server --files .'

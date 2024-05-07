@@ -1,0 +1,90 @@
+configuration {
+  modes: "drun";
+  display-drun: "Search: ";
+  font: "RobotoMono Nerd Font bold 11";
+}
+
+* {
+  bg: #282C34;
+  fg: #abb2bf;
+  black: #5C6370;
+  blue: #61AFEF;
+  cyan: #56B6C2;
+  green: #98C379;
+  magenta: #C678DD;
+  red: #E06C75;
+  white: #ABB2BF;
+  yellow: #D19A66;
+}
+
+window {
+  anchor: north;
+  location:north;
+  height: 32px;
+  width: 100%;
+  border: 0;
+  children: [horibox];
+  background-color: @bg;
+  padding: 0.3em 0.4em;
+}
+
+horibox {
+  orientation: horizontal;
+  children: [prompt, entry, listview, num-filtered-rows];
+}
+
+prompt {
+  text-color: @fg;
+}
+
+entry {
+  expand: false;
+  placeholder: "";
+  text-color: @fg;
+  width: 10em;
+}
+
+listview {
+  border: 0;
+  padding: 0;
+  layout: horizontal;
+}
+
+num-filtered-rows {
+  text-color: @fg;
+}
+
+element {
+  text-color: @fg;
+  padding: 0 1em;
+}
+
+element normal normal {
+  background-color: @bg;
+  text-color: @fg;
+}
+
+element normal active {
+  background-color: @bg;
+  text-color: @fg;
+}
+
+element alternate normal {
+  background-color: @bg;
+  text-color: @fg;
+}
+
+element alternate active {
+  background-color: @bg;
+  text-color: @fg;
+}
+
+element selected normal {
+  background-color: @bg;
+  text-color: @green;
+}
+
+element selected active {
+  background-color: @bg;
+  text-color: @green;
+}

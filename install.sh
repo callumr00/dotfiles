@@ -1,78 +1,40 @@
 #!/bin/bash
 
-# Update pacman database and install packages.
-sudo pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/.dotfiles/pacman_packages.txt))
+# Install pacman packages.
+if [ -f ~/.dotfiles/packages/pacman.txt ]; then
+	sudo pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/.dotfiles/packages/pacman.txt))
+fi
 
-# Install yay and aur packages.
-cd ~/../../opt && sudo git clone https://aur.archlinux.org/yay.git
-sudo chown -R $USER:users ./yay
-cd yay
-makepkg -si
-yay -Syu --needed $(comm -12  <(yay -Slq | sort) <(sort ~/.dotfiles/aur_packages.txt))
+# Install aur packages.
+if [ -f ~/.dotfiles/packages/aur.txt ]; then
+	sudo pacman -Sy --needed git base-devel
+	git clone https://aur.archlinux.org/yay.git ~/yay
+	cd ~/yay
+	makepkg -si
+	cd
+	yay -Syu --needed $(comm -12  <(yay -Slq | sort) <(sort ~/.dotfiles/packages/aur.txt))
+fi
 
 # Install npm packages.
-sudo npm install -g $(tr '\n' ' ' < ~/.dotfiles/npm_packages.txt)
+if [ -f ~/.dotfiles/packages/npm.txt ]; then
+	pacman -Sy --needed npm
+	sudo npm install -g $(tr '\n' ' ' < ~/.dotfiles/packages/npm.txt)
+fi
 
-# Install themes.
-mkdir -p ~/.themes
-cd ~/.themes
-
-# -- Install and apply the WhiteSur GTK theme.
-GTK_THEME_NAME="WhiteSur-Dark"
-GTK_THEME_URL="https://github.com/vinceliuice/WhiteSur-gtk-theme/raw/master/release/WhiteSur-Dark.tar.xz"
-wget -q "$GTK_THEME_URL"
-tar -xf "$GTK_THEME_NAME".tar.xz
-rm "$GTK_THEME_NAME".tar.xz
-gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME_NAME"
-
-# -- Install and apply the WhiteSur icon theme.
-ICON_THEME_NAME="WhiteSur-Icons"
-ICON_THEME_URL="https://github.com/vinceliuice/WhiteSur-icon-theme/trunk/src/"
-svn checkout -q "$ICON_THEME_URL" "$ICON_THEME_NAME"
-gsettings set org.gnome.desktop.interface icon-theme "$ICON_THEME_NAME"
-
-# -- Install and apply the McMojave cursor theme.
-CURSOR_THEME_NAME="McMojave-Cursors"
-CURSOR_THEME_URL="https://github.com/vinceliuice/McMojave-cursors/trunk/dist/"
-svn checkout -q "$CURSOR_THEME_URL" "$CURSOR_THEME_NAME"
-gsettings set org.gnome.desktop.interface cursor-theme "$CURSOR_THEME_NAME"
-
-# Create Firefox profile and styling.
-FIREFOX_PROFILE=$(ls ~/dotfiles/.mozilla/firefox/)
-mkdir -p ~/.mozilla/firefox/$FIREFOX_PROFILE/chrome
-wget -O ~/.mozilla/firefox/$FIREFOX_PROFILE/user.js https://raw.githubusercontent.com/arkenfox/user.js/master/user.js
-svn --force https://github.com/andreasgrafen/trunk/cascade/chrome ~/.mozilla/firefox/$FIREFOX_PROFILE/chrome
-
-# Install the onedark.vim colour scheme for vim.
-mkdir -p ~/.vim/pack/github/start
-cd ~/.vim/pack/github/start
-git clone https://github.com/joshdick/onedark.vim.git
-
-# Create symbolic links to config files.
+# Create symlinks to config files.
 configs=(
 	".bashrc"
-    "dmenu/config.h"
-	".config/alacritty"
-	".config/neofetch"
-    ".config/nitrogen"
-    ".config/xmobar"
-	".config/xmonad"
-	".mozilla/firefox/$FIREFOX_PROFILE/user-overrides.js"
-    ".vim"
     ".vimrc"
 	".xinitrc"
+	".config/alacritty"
+	".config/neofetch"
+    ".config/rofi"
+    ".config/xmobar"
+	".config/xmonad"
 )
 for config in "${configs[@]}"; do
        ln -fsv "${HOME}/.dotfiles/${config}" "${HOME}/${config}"
 done
-
-# Install dmenu.
-cd
-git clone https://git.suckless.org/dmenu
-cd dmenu
-wget https://tools.suckless.org/dmenu/patches/line-height/dmenu-lineheight-5.2.diff
-patch -p1 < dmenu-lineheight-5.2.diff
-sudo make clean install
 
 # Use starship's Pure preset config.
 starship preset pure-preset -o ~/.config/starship.toml
