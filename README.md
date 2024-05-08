@@ -2,7 +2,6 @@
 
 A minimal installation and configuration for productivity.
 
-
 ![screenshot](/screenshot.jpg)
 
 OS : [Arch Linux](https://archlinux.org/)\
@@ -23,7 +22,6 @@ Text Editor: [vim](https://www.vim.org/)
     2. [Verify signature](https://wiki.archlinux.org/title/installation_guide#Verify_signature)
     3. [Prepare an installation medium](https://wiki.archlinux.org/title/installation_guide#Prepare_an_installation_medium)
     4. [Boot the live environment](https://wiki.archlinux.org/title/installation_guide#Boot_the_live_environment)
-  
   
 2. Use the [archinstall](https://wiki.archlinux.org/title/archinstall) helper
     1. `archinstall`
@@ -59,7 +57,6 @@ Text Editor: [vim](https://www.vim.org/)
 <details>
 <summary>Customization (~45min)</summary>
 <br>
-    
     
 1. Clone this repo
 ```
