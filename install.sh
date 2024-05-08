@@ -5,7 +5,7 @@ if [ -f ~/.dotfiles/packages/pacman.txt ]; then
 	sudo pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/.dotfiles/packages/pacman.txt))
 fi
 
-# Install yay aur packages.
+# Install yay and aur packages.
 if [ -f ~/.dotfiles/packages/aur.txt ]; then
 	sudo pacman -Sy --needed git base-devel
 	git clone https://aur.archlinux.org/yay.git ~/yay
