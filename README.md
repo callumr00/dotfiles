@@ -1,4 +1,4 @@
-# dotfiles
+# Linux Dotfiles
 
 A minimal installation and configuration for productivity.
 
