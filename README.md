@@ -1,9 +1,10 @@
-# dotfiles
+# Linux Dotfiles
 
 A minimal installation and configuration for productivity.
 
 ![screenshot](/screenshot.jpg)
 
+OS : [Arch Linux](https://archlinux.org/)\
 Window Manager: [xmonad](https://xmonad.org/)\
 Status Bar: [xmobar](https://hackage.haskell.org/package/xmobar)\
 App Launcher: [rofi](https://davatorium.github.io/rofi/)\
@@ -15,14 +16,12 @@ Text Editor: [vim](https://www.vim.org/)
 
 <details>
 <summary>OS Installation (~15min)</summary>
-<br>
-
+    
 1. Go through the Pre-Installation steps
     1. [Acquire an installation image](https://wiki.archlinux.org/title/installation_guide#Acquire_an_installation_image)
     2. [Verify signature](https://wiki.archlinux.org/title/installation_guide#Verify_signature)
     3. [Prepare an installation medium](https://wiki.archlinux.org/title/installation_guide#Prepare_an_installation_medium)
     4. [Boot the live environment](https://wiki.archlinux.org/title/installation_guide#Boot_the_live_environment)
-  
   
 2. Use the [archinstall](https://wiki.archlinux.org/title/archinstall) helper
     1. `archinstall`
@@ -58,12 +57,15 @@ Text Editor: [vim](https://www.vim.org/)
 <details>
 <summary>Customization (~45min)</summary>
 <br>
-
+    
 1. Clone this repo
 ```
 git clone https://github.com/callumr00/dotfiles.git ~/.dotfiles
 ```
 2. Run the install script
+
+The installation script installs packages using <a href="https://wiki.archlinux.org/title/pacman">pacman</a>, the Arch Linux package manager; it won't work out-of-the-box for other distros. Symlinks are then created for config files.
+
 ```
 ~/.dotfiles/install.sh
 ```

@@ -10,6 +10,7 @@
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000
 
+# Use starship prompt.
 eval "$(starship init bash)"
 
 # Send neofetch output to column for printing.
