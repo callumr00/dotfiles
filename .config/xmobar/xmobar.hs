@@ -1,7 +1,7 @@
 Config {
-    font = "RobotoMono Nerd Font bold 11",
-    bgColor = "#282C34",
-    fgColor = "#ABB2BF",
+    font = "RobotoMono Nerd Font 11",
+    bgColor = "#222222",
+    fgColor = "#F5EEE6",
     position = TopH 32,
     alignSep = "}{",
     sepChar = "%",
@@ -20,21 +20,11 @@ Config {
     commands = [
         Run StdinReader,
         Run Date "%H:%M" "date" 600,
-        Run Cpu [
-            "-L", "30",
-            "-H", "80",
-            "--low", "#98C379",
-            "--normal", "#D19A66",
-            "--high", "#E06C75"
-            ] 10,
-        Run Memory [
-            "-t", "Mem: <usedratio>%",
-            "-L", "30",
-            "-H", "80",
-            "--low", "#98C379",
-            "--normal", "#D19A66",
-            "--high", "#E06C75"
-            ] 10,
-        Run Com "/home/callum/.config/xmobar/gpu.sh" [] "gpu" 10
+        Run Cpu [] 10,
+        Run Memory ["-t", "Mem: <usedratio>%"] 10,
+        Run Com "sh" [
+            "-c",
+            "echo Gpu: $(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader | cut -f 1 -d ' ')%"
+            ] "gpu" 10
         ]
     }

@@ -35,6 +35,3 @@ configs=(
 for config in "${configs[@]}"; do
        ln -fsv "${HOME}/.dotfiles/${config}" "${HOME}/${config}"
 done
-
-# Use starship's Pure preset config.
-starship preset pure-preset -o ~/.config/starship.toml

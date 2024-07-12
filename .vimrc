@@ -9,12 +9,13 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'joshdick/onedark.vim'
+Plug 'ntk148v/komau.vim'
 call plug#end()
 
 " Settings.
 set termguicolors
-colorscheme onedark
+colorscheme komau
+set background=dark
 
 set scrolloff=8
 set number

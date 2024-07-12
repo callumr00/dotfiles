@@ -10,8 +10,7 @@
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000
 
-# Use starship prompt.
-eval "$(starship init bash)"
+PS1='$ '
 
 # Send neofetch output to column for printing.
 alias neofetch="neofetch --stdout | column -t -s ':'"

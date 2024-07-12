@@ -1,4 +1,4 @@
 #!/bin/sh
 
-xsetroot -solid "#292C34"
+xsetroot -solid "#222222"
 xmonad

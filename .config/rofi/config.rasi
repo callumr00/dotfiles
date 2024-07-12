@@ -1,20 +1,13 @@
 configuration {
   modes: "drun";
   display-drun: "Search: ";
-  font: "RobotoMono Nerd Font bold 11";
+  font: "RobotoMono Nerd Font 11";
 }
 
 * {
-  bg: #282C34;
-  fg: #abb2bf;
-  black: #5C6370;
-  blue: #61AFEF;
-  cyan: #56B6C2;
-  green: #98C379;
-  magenta: #C678DD;
-  red: #E06C75;
-  white: #ABB2BF;
-  yellow: #D19A66;
+  black: #222222;
+  white: #F5EEE6;
+  grey: #767676;
 }
 
 window {
@@ -24,7 +17,7 @@ window {
   width: 100%;
   border: 0;
   children: [horibox];
-  background-color: @bg;
+  background-color: @black;
   padding: 0.3em 0.4em;
 }
 
@@ -35,17 +28,17 @@ horibox {
 
 textbox {
   border: 1px;
-  text-color: @red;
+  text-color: @white;
 }
 
 prompt {
-  text-color: @fg;
+  text-color: @white;
 }
 
 entry {
   expand: false;
   placeholder: "";
-  text-color: @fg;
+  text-color: @white;
   width: 10em;
 }
 
@@ -56,40 +49,40 @@ listview {
 }
 
 num-filtered-rows {
-  text-color: @fg;
+  text-color: @white;
 }
 
 element {
-  text-color: @fg;
+  text-color: @grey;
   padding: 0 1em;
 }
 
 element normal normal {
-  background-color: @bg;
-  text-color: @fg;
+  background-color: @black;
+  text-color: @grey;
 }
 
 element normal active {
-  background-color: @bg;
-  text-color: @fg;
+  background-color: @black;
+  text-color: @grey;
 }
 
 element alternate normal {
-  background-color: @bg;
-  text-color: @fg;
+  background-color: @black;
+  text-color: @grey;
 }
 
 element alternate active {
-  background-color: @bg;
-  text-color: @fg;
+  background-color: @black;
+  text-color: @grey;
 }
 
 element selected normal {
-  background-color: @bg;
-  text-color: @green;
+  background-color: @black;
+  text-color: @white;
 }
 
 element selected active {
-  background-color: @bg;
-  text-color: @green;
+  background-color: @black;
+  text-color: @white;
 }
