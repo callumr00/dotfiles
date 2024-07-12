@@ -10,7 +10,7 @@
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000
 
-PS1='$ '
+PS1="\n\w\\n$ "
 
 # Send neofetch output to column for printing.
 alias neofetch="neofetch --stdout | column -t -s ':'"
