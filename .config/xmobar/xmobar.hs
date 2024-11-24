@@ -1,7 +1,7 @@
 Config {
     font = "RobotoMono Nerd Font 11",
-    bgColor = "#222222",
-    fgColor = "#F5EEE6",
+    bgColor = "#F5EEE6",
+    fgColor = "#222222",
     position = TopH 32,
     alignSep = "}{",
     sepChar = "%",

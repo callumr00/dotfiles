@@ -2,9 +2,7 @@
 
 A minimal installation and configuration for productivity.
 
-![screenshot](/img/1.jpg)
-![screenshot](/img/2.jpg)
-![screenshot](/img/3.jpg)
+![screenshot](/img.png)
 
 OS : [Arch Linux](https://archlinux.org/)\
 Window Manager: [xmonad](https://xmonad.org/)\

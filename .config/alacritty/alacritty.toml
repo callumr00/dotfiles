@@ -9,15 +9,15 @@ size = 11.0
 family = "RobotoMono Nerd Font"
 
 [colors.primary]
-background = "#222222"
-foreground = "#F5EEE6"
+background = "#F5EEE6"
+foreground = "#222222"
 
 [colors.normal]
 black   = "#222222"
-red     = "#545454"
-green   = "#767676"
-yellow  = "#CCCCCC"
-blue    = "#999999"
-magenta = "#E5E5E5"
-cyan    = "#999999"
+red     = "#B31D28"
+green   = "#22863A"
+yellow  = "#FED442"
+blue    = "#005CC5"
+magenta = "#D73A49"
+cyan    = "#00BEFF"
 white   = "#F5EEE6"

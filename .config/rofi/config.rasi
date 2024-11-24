@@ -5,9 +5,9 @@ configuration {
 }
 
 * {
-  black: #222222;
-  white: #F5EEE6;
-  grey: #767676;
+  background: #F5EEE6;
+  foreground: #767676;
+  highlight: #222222;
 }
 
 window {
@@ -17,7 +17,7 @@ window {
   width: 100%;
   border: 0;
   children: [horibox];
-  background-color: @black;
+  background-color: @background;
   padding: 0.3em 0.4em;
 }
 
@@ -28,17 +28,17 @@ horibox {
 
 textbox {
   border: 1px;
-  text-color: @white;
+  text-color: @highlight;
 }
 
 prompt {
-  text-color: @white;
+  text-color: @highlight;
 }
 
 entry {
   expand: false;
   placeholder: "";
-  text-color: @white;
+  text-color: @highlight;
   width: 10em;
 }
 
@@ -49,40 +49,40 @@ listview {
 }
 
 num-filtered-rows {
-  text-color: @white;
+  text-color: @highlight;
 }
 
 element {
-  text-color: @grey;
+  text-color: @foreground;
   padding: 0 1em;
 }
 
 element normal normal {
-  background-color: @black;
-  text-color: @grey;
+  background-color: @background;
+  text-color: @foreground;
 }
 
 element normal active {
-  background-color: @black;
-  text-color: @grey;
+  background-color: @background;
+  text-color: @foreground;
 }
 
 element alternate normal {
-  background-color: @black;
-  text-color: @grey;
+  background-color: @background;
+  text-color: @foreground;
 }
 
 element alternate active {
-  background-color: @black;
-  text-color: @grey;
+  background-color: @background;
+  text-color: @foreground;
 }
 
 element selected normal {
-  background-color: @black;
-  text-color: @white;
+  background-color: @background;
+  text-color: @highlight;
 }
 
 element selected active {
-  background-color: @black;
-  text-color: @white;
+  background-color: @background;
+  text-color: @highlight;
 }

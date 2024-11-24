@@ -10,19 +10,15 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map as M
 import System.Exit
 
-white, grey :: String
-white = "#F5EEE6"
-grey = "#767676"
-
 manageHook :: ManageHook
 manageHook = composeAll [isDialog --> doFloat]
 
 logHook xmobarProc = dynamicLogWithPP $ def {
     ppSep = "    ",
     ppWsSep = " ",
-    ppCurrent = \_ -> xmobarColor white "" "◉",
-    ppHidden = \_ -> xmobarColor grey "" "◉",
-    ppHiddenNoWindows = \_ -> xmobarColor grey "" "◌",
+    ppCurrent = \_ -> xmobarColor "#222222" "" "◉",
+    ppHidden = \_ -> xmobarColor "#767676" "" "◉",
+    ppHiddenNoWindows = \_ -> xmobarColor "#767676" "" "◌",
     ppTitle = const "",
     ppOutput = hPutStrLn xmobarProc
 }
@@ -72,8 +68,8 @@ main = do
         XMonad.borderWidth        = 3,
         XMonad.focusFollowsMouse  = True,
         XMonad.clickJustFocuses   = True,
-        XMonad.normalBorderColor  = grey,
-        XMonad.focusedBorderColor = white,
+        XMonad.normalBorderColor  = "#F5EEE6",
+        XMonad.focusedBorderColor = "#222222",
         XMonad.manageHook         = Main.manageHook,
         XMonad.logHook            = Main.logHook xmobarProc,
         XMonad.layoutHook         = Main.layoutHook,
