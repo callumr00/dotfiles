@@ -10,6 +10,7 @@ flameshot
 gimp
 git
 htop
+inter-font
 less
 man-db
 mpv
@@ -27,10 +28,13 @@ pavucontrol
 python
 racket
 rofi
-starship
+spotify-launcher
 tldr
 tmux
+ttf-nerd-fonts-symbols
+ttf-nerd-fonts-symbols-mono
 ttf-roboto-mono-nerd
+unzip
 vim
 xmobar
 xmonad
