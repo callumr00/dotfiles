@@ -71,3 +71,4 @@ The installation script installs packages using <a href="https://wiki.archlinux.
 3. `reboot`
 4. Login and enter the desktop environment with `startx`
 </details>
+
