@@ -10,12 +10,15 @@ flameshot
 gimp
 git
 htop
-inter-font
 less
 man-db
 mpv
 ncdu
 neofetch
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+noto-fonts-extra
 npm
 nsxiv
 nvidia
@@ -31,9 +34,7 @@ rofi
 spotify-launcher
 tldr
 tmux
-ttf-nerd-fonts-symbols
-ttf-nerd-fonts-symbols-mono
-ttf-roboto-mono-nerd
+ttf-jetbrains-mono
 unzip
 vim
 xmobar

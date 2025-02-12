@@ -14,16 +14,16 @@ manageHook :: ManageHook
 manageHook = composeAll [isDialog --> doFloat]
 
 logHook xmobarProc = dynamicLogWithPP $ def {
-    ppSep = "    ",
-    ppWsSep = " ",
-    ppCurrent = \_ -> xmobarColor "#222222" "" "◉",
-    ppHidden = \_ -> xmobarColor "#767676" "" "◉",
-    ppHiddenNoWindows = \_ -> xmobarColor "#767676" "" "◌",
-    ppTitle = const "",
-    ppOutput = hPutStrLn xmobarProc
+    ppSep             = "    ",
+    ppWsSep           = " ",
+    ppCurrent         = \_ -> xmobarColor "#222222" "" "●",
+    ppHidden          = \_ -> xmobarColor "#999999" "" "●",
+    ppHiddenNoWindows = \_ -> xmobarColor "#999999" "" "○",
+    ppTitle           = const "",
+    ppOutput          = hPutStrLn xmobarProc
 }
 
-layoutHook = gaps [(U, 32)] $ tiled ||| Mirror tiled ||| Full ||| Grid
+layoutHook = gaps [(U, 38)] $ tiled ||| Mirror tiled ||| Full ||| Grid
     where
         tiled   = Tall nmaster delta ratio
         nmaster = 1
@@ -68,7 +68,7 @@ main = do
         XMonad.borderWidth        = 3,
         XMonad.focusFollowsMouse  = True,
         XMonad.clickJustFocuses   = True,
-        XMonad.normalBorderColor  = "#F5EEE6",
+        XMonad.normalBorderColor  = "#999999",
         XMonad.focusedBorderColor = "#222222",
         XMonad.manageHook         = Main.manageHook,
         XMonad.logHook            = Main.logHook xmobarProc,

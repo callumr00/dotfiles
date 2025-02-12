@@ -1,19 +1,19 @@
 configuration {
   modes: "drun";
   display-drun: "Search: ";
-  font: "RobotoMono Nerd Font 11";
+  font: "JetBrains Mono 13";
 }
 
 * {
   background: #F5EEE6;
-  foreground: #767676;
+  foreground: #999999;
   highlight: #222222;
 }
 
 window {
   anchor: north;
   location:north;
-  height: 32px;
+  height: 38px;
   width: 100%;
   border: 0;
   children: [horibox];

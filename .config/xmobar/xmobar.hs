@@ -1,8 +1,8 @@
 Config {
-    font = "RobotoMono Nerd Font 11",
+    font = "JetBrains Mono 13",
     bgColor = "#F5EEE6",
     fgColor = "#222222",
-    position = TopH 32,
+    position = TopH 38,
     alignSep = "}{",
     sepChar = "%",
     template = "\
