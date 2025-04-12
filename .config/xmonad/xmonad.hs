@@ -14,11 +14,11 @@ manageHook :: ManageHook
 manageHook = composeAll [isDialog --> doFloat]
 
 logHook xmobarProc = dynamicLogWithPP $ def {
-    ppSep             = "    ",
+    ppSep             = "   ",
     ppWsSep           = " ",
-    ppCurrent         = \_ -> xmobarColor "#222222" "" "●",
-    ppHidden          = \_ -> xmobarColor "#999999" "" "●",
-    ppHiddenNoWindows = \_ -> xmobarColor "#999999" "" "○",
+    ppCurrent         = \_ -> xmobarColor "#222222" "" "◼",
+    ppHidden          = \_ -> xmobarColor "#999999" "" "◼",
+    ppHiddenNoWindows = \_ -> xmobarColor "#999999" "" "◻",
     ppTitle           = const "",
     ppOutput          = hPutStrLn xmobarProc
 }

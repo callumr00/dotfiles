@@ -1,5 +1,5 @@
 Config {
-    font = "JetBrains Mono 13",
+    font = "Triplicate A Code 14",
     bgColor = "#F5EEE6",
     fgColor = "#222222",
     position = TopH 38,

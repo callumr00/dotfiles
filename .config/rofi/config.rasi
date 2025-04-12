@@ -1,7 +1,7 @@
 configuration {
   modes: "drun";
   display-drun: "Search: ";
-  font: "JetBrains Mono 13";
+  font: "Triplicate A Code 14";
 }
 
 * {
