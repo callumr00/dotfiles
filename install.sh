@@ -1,37 +1,62 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Install pacman packages.
-if [ -f ~/.dotfiles/packages/pacman.txt ]; then
-	sudo pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/.dotfiles/packages/pacman.txt))
-fi
+error_prefix="[\033[31;1m0\033[0m]"
+success_prefix="[\033[32;1m1\033[0m]"
 
-# Install yay and aur packages.
-if [ -f ~/.dotfiles/packages/aur.txt ]; then
-	sudo pacman -Sy --needed git base-devel
-	git clone https://aur.archlinux.org/yay.git ~/yay
-	cd ~/yay
-	makepkg -si
-	cd
-	yay -Syu --needed $(comm -12  <(yay -Slq | sort) <(sort ~/.dotfiles/packages/aur.txt))
-fi
+function install_packages() {
+    local package_list=$1
 
-# Install npm and npm packages.
-if [ -f ~/.dotfiles/packages/npm.txt ]; then
-	pacman -Sy --needed npm
-	sudo npm install -g $(tr '\n' ' ' < ~/.dotfiles/packages/npm.txt)
-fi
+    local installed_packages=$(pacman -Slq | sort)
+    local required_packages=$(sort "${package_list}")
 
-# Create symlinks to config files.
-configs=(
-	".bashrc"
-    ".vimrc"
-	".xinitrc"
-	".config/alacritty"
-	".config/neofetch"
-    ".config/rofi"
-    ".config/xmobar"
-	".config/xmonad"
-)
-for config in "${configs[@]}"; do
-       ln -fsv "${HOME}/.dotfiles/${config}" "${HOME}/${config}"
-done
+    local outstanding_packages=$(comm -12 <(echo "${installed_packages}") \
+                                          <(echo "${required_packages}"))
+
+    if [ -n "${outstanding_packages}" ]; then
+        sudo pacman -Syu --needed ${outstanding_packages}
+    fi
+}
+
+function create_symlinks() {
+    local dotfiles_dir=$1
+
+    shift
+    local configs=("$@")
+
+    for config in "${configs[@]}"; do
+        ln -fsv "${dotfiles_dir}/${config}" ${HOME}/${config}
+    done
+}
+
+function main() {
+    local dotfiles_dir="${HOME}/.dotfiles"
+
+    if [ ! -d "${dotfiles_dir}" ]; then
+        echo -e "${error_prefix} ${dotfiles_dir} not found"
+        return 1
+    fi
+
+    local package_list="${dotfiles_dir}/packages.txt"
+
+    if [ ! -f "${package_list}" ]; then
+        echo -e "${error_prefix} ${package_list} not found"
+        return 1
+    fi
+
+    install_packages "${package_list}"
+
+    local configs=(
+        ".bashrc"
+        ".vimrc"
+        ".xinitrc"
+        ".config/alacritty"
+        ".config/rofi"
+        ".config/xmobar"
+        ".config/xmonad"
+    )
+
+    create_symlinks "${dotfiles_dir}" "${configs[@]}"
+
+}
+
+main
