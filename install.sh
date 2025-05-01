@@ -56,7 +56,6 @@ function main() {
     )
 
     create_symlinks "${dotfiles_dir}" "${configs[@]}"
-
 }
 
 main
