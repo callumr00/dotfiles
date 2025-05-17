@@ -9,7 +9,7 @@ Window Manager: [xmonad](https://xmonad.org/)\
 Status Bar: [xmobar](https://hackage.haskell.org/package/xmobar)\
 App Launcher: [rofi](https://davatorium.github.io/rofi/)\
 Terminal Emulator: [alacritty](https://github.com/alacritty/alacritty)\
-Text Editor: [vim](https://www.vim.org/)
+Text Editor: [vim](https://www.vim.org/)\
 Font: [Triplicate](https://mbtype.com/fonts/triplicate/)
 
 ---
