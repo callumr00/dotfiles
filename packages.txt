@@ -18,10 +18,6 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 nsxiv
-nvidia
-nvidia-settings
-nvidia-utils
-nvtop
 pacman-contrib
 pavucontrol
 python

@@ -15,7 +15,7 @@ Config {
         \    \
         \%memory%\
         \    \
-        \%gpu%\
+        \%bat%\
         \ ",
     commands = [
         Run StdinReader,
@@ -24,7 +24,7 @@ Config {
         Run Memory ["-t", "Mem: <usedratio>%"] 10,
         Run Com "sh" [
             "-c",
-            "echo Gpu: $(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader | cut -f 1 -d ' ')%"
-            ] "gpu" 10
+            "echo Bat: $(cat /sys/class/power_supply/BAT0/capacity)%"
+            ] "bat" 10
         ]
     }
